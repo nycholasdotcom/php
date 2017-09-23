@@ -20,6 +20,7 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+$ip = $_SERVER['REMOTE_ADDR'];
 
 // USAGE: http://ip-server/cloudflare_ddns_remote.php?domain=home.example.com&email=cloudflare-account@example.com&key=YOUR_CLOUDFLARE_AUTHKEY&zone=example.com
 $domain 		= $_GET['domain'];
