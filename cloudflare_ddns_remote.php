@@ -20,13 +20,36 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$ip = $_SERVER['REMOTE_ADDR'];
 
 // USAGE: http://ip-server/cloudflare_ddns_remote.php?domain=home.example.com&email=cloudflare-account@example.com&key=YOUR_CLOUDFLARE_AUTHKEY&zone=example.com
 $domain 		= $_GET['domain'];
 $authemail		= $_GET['email'];
 $authkey		= $_GET['key'];
 $zone_name		= $_GET['zone'];
+
+function getUserIP()
+{
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    return $ip;
+}
+
+$ip = getUserIP();
 
 $ddns_update = array(
     "type" => "A",
