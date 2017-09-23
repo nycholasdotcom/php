@@ -22,6 +22,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // USAGE: http://ip-server/cloudflare_ddns_remote.php?domain=home.example.com&email=cloudflare-account@example.com&key=YOUR_CLOUDFLARE_AUTHKEY&zone=example.com
+// Try here if you want: https://nycholas.com/cloudflare_ddns_remote.php
 $domain 		= $_GET['domain'];
 $authemail		= $_GET['email'];
 $authkey		= $_GET['key'];
